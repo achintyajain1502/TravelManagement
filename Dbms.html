@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Management Dashboard</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f6fc;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #0066cc;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Navigation */
+nav {
+  background: #004d99;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 18px;
+  background: #0073e6;
+  border-radius: 5px;
+  text-align: center;
+  transition: background 0.3s;
+  margin: 5px;
+}
+
+nav a:hover {
+  background: #0059b3;
+}
+
+/* CRUD Buttons Layout */
+.crud-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 1400px;
+  padding: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.crud-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 calc(14% - 10px);
+  min-width: 170px;
+  box-sizing: border-box;
+  gap: 8px;
+}
+
+.crud-buttons a {
+  display: block;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* View Buttons */
+.crud-buttons a:not(.manage) {
+  background: linear-gradient(135deg, #28a745, #23923d);
+  color: #fff;
+}
+
+/* Manage Buttons */
+.crud-buttons a.manage {
+  background: linear-gradient(135deg, #007bff, #0069d9);
+  color: #fff;
+}
+
+.crud-buttons a:hover {
+  transform: translateY(-2px);
+}
+
+/* FORM SECTION */
+form {
+  width: 90%;
+  margin: 30px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px 35px;
+  text-align: center;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+form input {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+form button {
+  width: 150px;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #004d99;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 20px auto;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #0073e6;
+  color: white;
+}
+
+/* Delete button */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.pagination a {
+  padding: 8px 14px;
+  background: #0066cc;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .crud-group {
+    flex: 1 1 30%;
+  }
+}
+
+@media (max-width: 700px) {
+  .crud-group {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .crud-group {
+    flex: 1 1 90%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>Travel Management System</header>
+
+<nav>
+  <a href="#">Customer</a>
+  <a href="#">Hotel</a>
+  <a href="#">Package</a>
+  <a href="#">Transport</a>
+  <a href="#">Booking</a>
+  <a href="#">Itinerary</a>
+  <a href="#">Payment</a>
+</nav>
+
+<main>
+
+<h2 style="text-align:center;">Travel Dashboard</h2>
+
+<div class="crud-buttons">
+
+  <div class="crud-group">
+    <a href="#">View Customer</a>
+    <a href="#" class="manage">Add / Manage Customer</a>
+  </div>
+
+  <div class="crud-group">
+    <a href="#">View Hotel</a>
+    <a href="#" class="manage">Add / Manage Hotel</a>
+  </div>
+
+  <div class="crud-group">
+    <a href="#">View Package</a>
+    <a href="#" class="manage">Add / Manage Package</a>
+  </div>
+
+  <div class="crud-group">
+    <a href="#">View Transport</a>
+    <a href="#" class="manage">Add / Manage Transport</a>
+  </div>
+
+  <div class="crud-group">
+    <a href="#">View Booking</a>
+    <a href="#" class="manage">Add / Manage Booking</a>
+  </div>
+
+  <div class="crud-group">
+    <a href="#">View Itinerary</a>
+    <a href="#" class="manage">Add / Manage Itinerary</a>
+  </div>
+
+  <div class="crud-group">
+    <a href="#">View Payment</a>
+    <a href="#" class="manage">Add / Manage Payment</a>
+  </div>
+
+</div>
+
+<form>
+  <div>
+    <label>Name</label>
+    <input type="text" placeholder="Enter Name">
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" placeholder="Enter Email">
+  </div>
+
+  <div>
+    <label>Booking Date</label>
+    <input type="date">
+  </div>
+
+  <button type="submit">Add Record</button>
+</form>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Destination</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>John</td>
+    <td>Goa</td>
+    <td>15000</td>
+    <td><button class="delete-btn">Delete</button></td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>Alice</td>
+    <td>Manali</td>
+    <td>22000</td>
+    <td><button class="delete-btn">Delete</button></td>
+  </tr>
+</table>
+
+<div class="pagination">
+  <a href="#">Prev</a>
+  <a href="#">Next</a>
+</div>
+
+</main>
+
+</body>
+</html>
